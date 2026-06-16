@@ -1,0 +1,210 @@
+/* ------------------------------------------------------------------ */
+/* Landing page — hero section overrides                               */
+/* ------------------------------------------------------------------ */
+
+.hero-lp {
+    padding: 5rem 2rem 4rem;
+    max-width: var(--max-width);
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+/* Badge */
+
+.lp-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: #edf7f2;
+    border: 1px solid #b8e0cc;
+    color: #2d7a5f;
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.45rem 1.1rem;
+    border-radius: 999px;
+    margin-bottom: 2rem;
+}
+
+.lp-badge-dot {
+    width: 8px;
+    height: 8px;
+    background: #34c47c;
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+/* Title */
+
+.lp-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 6vw, 4.5rem);
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.5rem;
+    gap: 0.1em;
+}
+
+.lp-title-line {
+    display: inline;
+    background: rgba(196, 208, 240, 0.45);
+    padding: 0.05em 0.25em;
+    border-radius: 3px;
+}
+
+.lp-line-dark  { color: var(--ink); }
+.lp-line-teal  { color: #2a9080; }
+
+/* Subtitle */
+
+.lp-subtitle {
+    font-size: 1.05rem;
+    color: var(--ink-muted);
+    line-height: 1.7;
+    max-width: 520px;
+    margin-bottom: 2.5rem;
+}
+
+/* Buttons */
+
+.lp-actions {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3.5rem;
+}
+
+.lp-btn-primary,
+.lp-btn-secondary {
+    display: inline-block;
+    padding: 0.8rem 2rem;
+    border-radius: var(--radius-sm);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: background 0.2s;
+}
+
+.lp-btn-primary  { background: #0f0f0f; color: #f7f6f3; }
+.lp-btn-secondary { background: #2d2d2d; color: #f7f6f3; }
+
+.lp-btn-primary:hover  { background: #333; }
+.lp-btn-secondary:hover { background: #111; }
+
+/* Dashboard mock */
+
+.lp-dash {
+    width: 100%;
+    max-width: 860px;
+    background: #f2f2f5;
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: 0 8px 48px rgba(0,0,0,0.09);
+}
+
+.lp-dash-chrome {
+    display: flex;
+    gap: 0.4rem;
+    margin-bottom: 1.25rem;
+}
+
+.lp-dot {
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+}
+
+.lp-dot-red    { background: #ff5f57; }
+.lp-dot-yellow { background: #febc2e; }
+.lp-dot-green  { background: #28c840; }
+
+/* Stat cards */
+
+.lp-dash-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.lp-stat {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.lp-stat-label {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+}
+
+.lp-stat-value {
+    font-family: var(--font-display);
+    font-size: 1.9rem;
+    color: var(--ink);
+    line-height: 1;
+}
+
+.lp-stat-note {
+    font-size: 0.8rem;
+    color: var(--ink-muted);
+}
+
+.lp-note-red   { color: #d94f4f; }
+.lp-note-green { color: #2a9080; }
+
+/* Bar rows */
+
+.lp-dash-bars {
+    background: #ffffff;
+    border-radius: var(--radius-md);
+    padding: 1.25rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+}
+
+.lp-bar-row {
+    display: grid;
+    grid-template-columns: 60px 1fr;
+    align-items: center;
+    gap: 1rem;
+}
+
+.lp-bar-cat {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--ink-soft);
+    text-align: left;
+}
+
+.lp-bar-track {
+    height: 10px;
+    background: #efefef;
+    border-radius: 999px;
+    overflow: hidden;
+}
+
+.lp-bar-fill {
+    height: 100%;
+    border-radius: 999px;
+}
+
+.lp-fill-food   { background: #d4a017; }
+.lp-fill-travel { background: #3b82f6; }
+.lp-fill-bills  { background: #7c5cbf; }
+
+/* Responsive */
+
+@media (max-width: 700px) {
+    .lp-dash-stats { grid-template-columns: 1fr; }
+    .lp-actions    { flex-direction: column; align-items: center; }
+}
