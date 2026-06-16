@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+
+{% block title %}Terms and Conditions — Spendly{% endblock %}
+
+{% block content %}
+
+<section class="legal-hero">
+    <div class="legal-hero-inner">
+        <div class="hero-badge">Legal</div>
+        <h1 class="legal-title">Terms and <em>Conditions</em></h1>
+        <p class="legal-subtitle">Please read these terms carefully before using Spendly. By continuing, you agree to be bound by them.</p>
+        <p class="legal-date">Last updated: June 2026</p>
+    </div>
+</section>
+
+<section class="legal-body">
+    <div class="legal-inner">
+
+        <div class="legal-card">
+            <div class="legal-card-num">01</div>
+            <div class="legal-card-content">
+                <h2 class="legal-section-title">Acceptance of Terms</h2>
+                <p>By accessing or using Spendly, you agree to be bound by these Terms and Conditions. If you do not agree with any part of these terms, you may not use the service. Your continued use of Spendly constitutes acceptance of any updates to these terms.</p>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <div class="legal-card-num">02</div>
+            <div class="legal-card-content">
+                <h2 class="legal-section-title">Use of Service</h2>
+                <p>Spendly is a personal expense tracking tool intended for individual, non-commercial use. You agree to use the service only for lawful purposes and in a manner that does not infringe the rights of others. You are responsible for maintaining the confidentiality of your account credentials and for all activity that occurs under your account.</p>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <div class="legal-card-num">03</div>
+            <div class="legal-card-content">
+                <h2 class="legal-section-title">User Data</h2>
+                <p>You retain full ownership of all expense data you enter into Spendly. We do not sell your personal data to third parties. Data you provide is stored solely to power the features of the application. You may request deletion of your account and associated data at any time by contacting us.</p>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <div class="legal-card-num">04</div>
+            <div class="legal-card-content">
+                <h2 class="legal-section-title">Limitations of Liability</h2>
+                <p>Spendly is provided "as is" without warranties of any kind, express or implied. We are not liable for any loss of data, financial decisions made based on information displayed in the app, service interruptions, or any indirect or incidental damages arising from your use of the service.</p>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <div class="legal-card-num">05</div>
+            <div class="legal-card-content">
+                <h2 class="legal-section-title">Changes to Terms</h2>
+                <p>We reserve the right to update these Terms and Conditions at any time. Changes will be posted on this page with an updated date. Continued use of Spendly after changes are posted constitutes your acceptance of the revised terms. We encourage you to review this page periodically.</p>
+            </div>
+        </div>
+
+        <div class="legal-card">
+            <div class="legal-card-num">06</div>
+            <div class="legal-card-content">
+                <h2 class="legal-section-title">Contact</h2>
+                <p>If you have any questions about these terms or how we handle your data, please reach out via the contact information provided on our website. We aim to respond to all inquiries within 2 business days.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<section class="cta-section">
+    <div class="cta-inner">
+        <h2 class="cta-title">Ready to get started?</h2>
+        <p class="cta-body">Track every rupee. Own your finances.</p>
+        <a href="{{ url_for('register') }}" class="btn-primary">Create free account</a>
+    </div>
+</section>
+
+{% endblock %}
