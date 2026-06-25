@@ -1,7 +1,12 @@
-from flask import Flask, render_template
-from database.db import get_db, init_db, seed_db
+from sqlite3 import IntegrityError
+
+from flask import Flask, flash, redirect, render_template, request, session, url_for
+from werkzeug.security import generate_password_hash
+
+from database.db import create_user, get_db, init_db, seed_db
 
 app = Flask(__name__)
+app.secret_key = "dev-secret-change-in-prod"
 
 with app.app_context():
     init_db()
@@ -17,9 +22,32 @@ def landing():
     return render_template("landing.html")
 
 
-@app.route("/register")
+@app.route("/register", methods=["GET", "POST"])
 def register():
-    return render_template("register.html")
+    if request.method == "GET":
+        return render_template("register.html")
+
+    name     = request.form.get("name", "").strip()
+    email    = request.form.get("email", "").strip().lower()
+    password = request.form.get("password", "")
+    confirm  = request.form.get("confirm_password", "")
+
+    if not name or not email or not password or not confirm:
+        flash("All fields are required.", "error")
+        return render_template("register.html")
+
+    if password != confirm:
+        flash("Passwords do not match.", "error")
+        return render_template("register.html")
+
+    try:
+        create_user(name, email, generate_password_hash(password))
+    except IntegrityError:
+        flash("An account with that email already exists.", "error")
+        return render_template("register.html")
+
+    flash("Account created! Please sign in.", "success")
+    return redirect(url_for("login"))
 
 
 @app.route("/login")
