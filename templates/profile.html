@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+
+{% block title %}Profile — Spendly{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/profile.css') }}">
+{% endblock %}
+
+{% block content %}
+<div class="profile-page">
+
+    <!-- Header -->
+    <div class="profile-header">
+        <div class="profile-identity">
+            <h1 class="profile-greeting">Hello, {{ user['name'] }}!</h1>
+            <p class="profile-email">{{ user['email'] }}</p>
+        </div>
+        <a href="{{ url_for('add_expense') }}" class="btn-primary profile-add-btn">
+            <i data-lucide="plus"></i>
+            Add Expense
+        </a>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-row">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i data-lucide="credit-card"></i>
+            </div>
+            <div class="stat-body">
+                <p class="stat-label">Total Spent</p>
+                <p class="stat-value">${{ "%.2f" | format(summary.total_spent) }}</p>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i data-lucide="shopping-bag"></i>
+            </div>
+            <div class="stat-body">
+                <p class="stat-label">Expenses Logged</p>
+                <p class="stat-value">{{ summary.expense_count }}</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Recent Transactions -->
+    <div class="section-header">
+        <h2 class="section-title">Recent Transactions</h2>
+    </div>
+
+    {% if summary.recent %}
+    <div class="tx-table-wrapper">
+        <table class="tx-table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Category</th>
+                    <th>Description</th>
+                    <th class="tx-amount-col">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for expense in summary.recent %}
+                <tr>
+                    <td class="tx-date">{{ expense['date'] }}</td>
+                    <td>
+                        <span class="cat-badge cat-{{ expense['category'] | lower }}">
+                            {{ expense['category'] }}
+                        </span>
+                    </td>
+                    <td class="tx-desc">{{ expense['description'] or '—' }}</td>
+                    <td class="tx-amount">${{ "%.2f" | format(expense['amount']) }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    {% else %}
+    <div class="empty-state">
+        <i data-lucide="inbox"></i>
+        <p class="empty-title">No expenses yet</p>
+        <p class="empty-body">Start tracking by adding your first expense.</p>
+        <a href="{{ url_for('add_expense') }}" class="btn-ghost empty-cta">Add your first expense</a>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
