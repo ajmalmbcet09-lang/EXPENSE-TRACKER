@@ -43,7 +43,9 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/lucide@latest"></script>
     <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    <script>lucide.createIcons();</script>
     {% block scripts %}{% endblock %}
 </body>
 </html>

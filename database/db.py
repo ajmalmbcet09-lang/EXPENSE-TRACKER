@@ -94,3 +94,34 @@ def get_user_by_email(email):
     ).fetchone()
     conn.close()
     return user
+
+
+def get_user_by_id(user_id):
+    conn = get_db()
+    user = conn.execute(
+        "SELECT * FROM users WHERE id = ?", (user_id,)
+    ).fetchone()
+    conn.close()
+    return user
+
+
+def get_expense_summary(user_id):
+    conn = get_db()
+    row = conn.execute(
+        """SELECT COALESCE(SUM(amount), 0.0) AS total_spent,
+                  COUNT(*) AS expense_count
+           FROM expenses WHERE user_id = ?""",
+        (user_id,)
+    ).fetchone()
+    recent = conn.execute(
+        """SELECT id, amount, category, date, description
+           FROM expenses WHERE user_id = ?
+           ORDER BY date DESC LIMIT 5""",
+        (user_id,)
+    ).fetchall()
+    conn.close()
+    return {
+        "total_spent": row["total_spent"],
+        "expense_count": row["expense_count"],
+        "recent": recent,
+    }

@@ -3,7 +3,7 @@ from sqlite3 import IntegrityError
 from flask import Flask, flash, redirect, render_template, request, session, url_for
 from werkzeug.security import check_password_hash, generate_password_hash
 
-from database.db import create_user, get_db, get_user_by_email, init_db, seed_db
+from database.db import create_user, get_db, get_expense_summary, get_user_by_email, get_user_by_id, init_db, seed_db
 
 app = Flask(__name__)
 app.secret_key = "dev-secret-change-in-prod"
@@ -94,7 +94,11 @@ def logout():
 
 @app.route("/profile")
 def profile():
-    return "Profile page — coming in Step 4"
+    if not session.get("user_id"):
+        return redirect(url_for("login"))
+    user    = get_user_by_id(session["user_id"])
+    summary = get_expense_summary(session["user_id"])
+    return render_template("profile.html", user=user, summary=summary)
 
 
 @app.route("/expenses/add")
